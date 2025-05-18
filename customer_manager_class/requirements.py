@@ -1,0 +1,1 @@
+# Brak zewnętrznych bibliotek
