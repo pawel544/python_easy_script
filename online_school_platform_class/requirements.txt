@@ -1,0 +1,7 @@
+
+---
+
+## 📄 `requirements.txt`
+
+```txt
+# Brak bibliotek zewnętrznych – czysty Python 3
