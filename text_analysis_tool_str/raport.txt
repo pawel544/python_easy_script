@@ -1,0 +1,14 @@
+liczba zdań: 4
+liczba słów: 23
+Średnia długość słowa: 5.74
+Top 10: 
+python 2
+i 2
+to 1
+język 1
+programowania 1
+jest 1
+czytelny 1
+potężny 1
+nadaje 1
+się 1

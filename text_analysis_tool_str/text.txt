@@ -1,0 +1,3 @@
+Python to język programowania. Jest czytelny i potężny.
+Python nadaje się do analizy danych, web developmentu, automatyzacji i więcej.
+Czy znasz już Pythona?
