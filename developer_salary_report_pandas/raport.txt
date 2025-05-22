@@ -1,0 +1,9 @@
+Średnie wynagrodzenie: 11080.0
+Mediana wynagrodzeń: 10850.0
+Liczba osób znająca Pythona: 5
+Pięciu najlepiej zarabiających programistów 
+USA     |     Fullstack Developer     |     Python     |     15000
+UK     |     Data Scientist     |     Python     |     13400
+Germany     |     Data Engineer     |     Python     |     12300
+Germany     |     Backend Developer     |     Python     |     12000
+Germany     |     DevOps Engineer     |     Bash     |     11200
