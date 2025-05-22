@@ -1,7 +1,0 @@
-
----
-
-## 📄 `requirements.txt`
-
-```txt
-pandas
