@@ -1,11 +1,11 @@
 import requests
 from datetime import date, datetime
 
-user_date= input("Podaj date w formacie RRRR-MM-DD ")
 
 
 
-def nasa_raport(user_date):
+
+def nasa_raport(user_date,save_to_file):
 
     url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY'
     try:
@@ -29,11 +29,17 @@ def nasa_raport(user_date):
                 f'📝 Opis: {answer["explanation"]}\n'
                 f'🔗 Link do zdjęcia: {answer.get("hdurl", answer.get("url", "Brak linku"))}')
         print(raport)
-
-        with open("raport.txt", "w", encoding="utf-8") as a:
-            a.write(raport)
-
+        if save_to_file:
+            with open("raport.txt", "w", encoding="utf-8") as a:
+                a.write(raport)
+                print("📄 Raport zapisany do pliku `raport.txt`")
     except requests.RequestException as e:
-        print("Błąd połączenia 400")
+        print("❌ Błąd połączenia 400")
+while True:
+    user_date = input("Podaj date w formacie RRRR-MM-DD \n"
+                      "Albo wpisz exit by zakończyć: ")
+    if user_date == "exit":break
+    save= input("Chcesz wygenerować raport t/n").lower()
 
-nasa_raport(user_date)
+    save_raport = save == 't'
+    nasa_raport(user_date,save_to_file = save_raport)
