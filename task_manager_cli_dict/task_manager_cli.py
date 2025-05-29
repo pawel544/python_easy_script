@@ -9,10 +9,12 @@ except FileNotFoundError:
     print("Plik nie istnieje")
 
 def add_task(task_text,priority,tasks):
-
-    new_key = max(tasks)+1
-    tasks[new_key]={"text":task_text,"priority":priority}
-    print ("Zadanie dodano")
+    if priority  in ["wysoki","średni","niski" ]:
+        new_key = max(tasks)+1
+        tasks[new_key]={"text":task_text,"priority":priority}
+        print ("Zadanie dodano")
+    else:
+        print("Dozwolone priorytety: wysoki, średni, niski ")
 
 def show_all_tasks(tasks):
     try:
@@ -20,22 +22,24 @@ def show_all_tasks(tasks):
             if key==0 :
                 continue
 
-            print(f"Nr{key}\n"
-                  f" {values['text']} | {values['priority']} ")
+            print(f"🆔Nr{key}\n"
+                  f"✏️{values['text']} |⏱️Priorytet: {values['priority']} ")
     except KeyError:
-        print("klucz nie znaleziony")
+        print("❌klucz nie znaleziony")
 def delete_task(task_id_to_delete):
     try:
         del tasks[task_id_to_delete]
-        print("usuwanie zakończone")
+        print("🗑usuwanie zakończone")
     except KeyError:
-        print ("klucz nie istnieje")
+        print ("❌klucz nie istnieje")
 def show_task(task_id_to_show):
     for key, values in tasks.items():
 
         if key==task_id_to_show:
-            print (f"Nr {key}\n"
-                   f"{values['text']} | {values['priority']}")
+            print (f"🆔Nr: {key}\n"
+                   f"✏️{values['text']} |⏱️Priorytet: {values['priority']}")
+    else:
+        print(f"❌Błędny numer zadania")
 
 
 while True:
@@ -51,16 +55,29 @@ while True:
     if choice=="exit":
         with open("tasks.json", "w", encoding="utf-8") as r:
             json.dump(tasks, r, indent=4)
+            print("💾Zapisywanie zakończone do zobaczenia")
             break
     elif choice == "1":
-        task_text = input("Podaj zadanie: ")
-        priority = input("Ustal priorytet: ")
-        add_task(task_text,priority,tasks)
+        try:
+            task_text = input("👉Podaj zadanie: ")
+            priority = input("👉Ustal priorytet(wysoki,średni,niski): ").strip().lower()
+            add_task(task_text,priority,tasks)
+        except Exception as e:
+            print(f'❌Błedny priorytet spróbuj ponownie')
     elif choice == "2":
-        show_all_tasks(tasks)
+        try:
+            show_all_tasks(tasks)
+        except Exception as e:
+            print(f"❌Nieoczekiwany błąd spróbuj ponownie {e}")
     elif choice == "3":
-        task_id_to_delete = int(input("Podaj numer zadania do usunięcia: "))
-        delete_task(task_id_to_delete)
+        try:
+            task_id_to_delete = int(input("👉Podaj numer zadania do usunięcia: "))
+            delete_task(task_id_to_delete)
+        except Exception as e:
+            print("❌Błędny numer zadania spróbuj ponownie")
     elif choice == "4":
-        task_id_to_show = str(input("Podaj Numer zadania do wyświetlenia"))
-        show_task(task_id_to_show)
+        try:
+            task_id_to_show = int(input("👉Podaj Numer zadania do wyświetlenia"))
+            show_task(task_id_to_show)
+        except Exception as e:
+            print("❌Błędny numer zadania spróbuj ponownie")
